@@ -1,6 +1,9 @@
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center justify-center text-center h-[80vh] px-6">
+    <section
+      id="home"
+      className="pt-24 flex flex-col items-center justify-center text-center h-[80vh] px-6"
+    >
       <h2 className="text-5xl font-bold mb-6">
         Find Your Perfect Ride
       </h2>
