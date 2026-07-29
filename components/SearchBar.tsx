@@ -6,6 +6,15 @@ export default function SearchBar() {
   const [pickupLocation, setPickupLocation] = useState("");
   const [pickupDate, setPickupDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
+  const [searchResult, setSearchResult] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setSearchResult(
+      `Searching cars in ${pickupLocation} from ${pickupDate} to ${returnDate}`
+    );
+  };
 
   return (
     <section className="bg-white p-8 rounded-xl shadow-lg max-w-5xl mx-auto -mt-16 relative z-10">
@@ -14,10 +23,7 @@ export default function SearchBar() {
       </h2>
 
       <form
-        onSubmit={(e) => {
-            e.preventDefault();
-            console.log("Searching for:", pickupLocation);
-        }}
+        onSubmit={handleSearch}
         className="grid grid-cols-1 md:grid-cols-4 gap-4"
       >
 
@@ -32,11 +38,15 @@ export default function SearchBar() {
         <input
           type="date"
           className="border p-3 rounded-lg"
+          value={pickupDate}
+          onChange={(e) => setPickupDate(e.target.value)}
         />
 
         <input
           type="date"
           className="border p-3 rounded-lg"
+          value={returnDate}
+          onChange={(e) => setReturnDate(e.target.value)}
         />
 
         <button
@@ -49,6 +59,9 @@ export default function SearchBar() {
 
       <p className="mt-4">
         Pickup Location: {pickupLocation}
+      </p>
+      <p className="mt-2 font-semibold text-blue-600">
+        {searchResult}
       </p>
     </section>
   );
